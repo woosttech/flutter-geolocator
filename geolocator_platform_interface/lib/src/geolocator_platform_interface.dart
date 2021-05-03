@@ -151,6 +151,20 @@ abstract class GeolocatorPlatform extends PlatformInterface {
     throw UnimplementedError('getPositionStream() has not been implemented.');
   }
 
+  /// Check if background updates are on or off.
+  Future<bool> isBackgroundUpdatesEnabled() {
+    throw UnimplementedError(
+      'isBackgroundUpdatesEnabled() has not been implemented.'
+    );
+  }
+
+  /// Toggle background updates on and off.
+  void setBackgroundUpdates(bool wantsBackgroundUpdates) {
+    throw UnimplementedError(
+      'setBackgroundUpdates() has not been implemented.'
+    );
+  }
+
   /// Opens the App settings page.
   ///
   /// Returns [true] if the app settings page could be opened, otherwise

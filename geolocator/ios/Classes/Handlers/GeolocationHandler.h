@@ -25,4 +25,7 @@ typedef void (^GeolocatorResult)(CLLocation *_Nullable location);
 
 - (void)stopListening;
 
+- (BOOL)isBackgroundUpdatesEnabled;
+- (void)setBackgroundUpdates:(BOOL)wantsBackgroundUpdates;
+
 @end

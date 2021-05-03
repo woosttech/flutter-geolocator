@@ -176,6 +176,15 @@ class MethodChannelGeolocator extends GeolocatorPlatform {
   }
 
   @override
+  Future<bool> isBackgroundUpdatesEnabled() async => _methodChannel
+      .invokeMethod<bool>('isBackgroundUpdatesEnabled')
+      .then((value) => value ?? false);
+
+  @override
+  void setBackgroundUpdates(bool wantsBackgroundUpdates) => _methodChannel
+    .invokeMethod('setBackgroundUpdates', wantsBackgroundUpdates);
+
+  @override
   Future<bool> openAppSettings() async => _methodChannel
       .invokeMethod<bool>('openAppSettings')
       .then((value) => value ?? false);

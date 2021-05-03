@@ -48,6 +48,11 @@
         [self openSettings:result];
     } else if ([@"openLocationSettings" isEqualToString:call.method]) {
         [self openSettings:result];
+    } else if ([@"isBackgroundUpdatesEnabled" isEqualToString:call.method]) {
+        BOOL isEnabled = [self.geolocationHandler isBackgroundUpdatesEnabled];
+        result([NSNumber numberWithBool:isEnabled]);
+    } else if ([@"setBackgroundUpdates" isEqualToString:call.method]) {
+        [self.geolocationHandler setBackgroundUpdates:(BOOL)call.arguments];
     } else { 
         result(FlutterMethodNotImplemented);
     }

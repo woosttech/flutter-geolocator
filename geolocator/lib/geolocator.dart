@@ -125,6 +125,12 @@ class Geolocator {
         timeLimit: timeLimit,
       );
 
+  static Future<bool> isBackgroundUpdatesEnabled() =>
+      GeolocatorPlatform.instance.isBackgroundUpdatesEnabled();
+
+  static void setBackgroundUpdates(bool wantsBackgroundUpdates) =>
+    GeolocatorPlatform.instance.setBackgroundUpdates(wantsBackgroundUpdates);
+
   /// Opens the App settings page.
   ///
   /// Returns [true] if the location settings page could be opened, otherwise

@@ -65,6 +65,23 @@
     self.resultHandler = nil;
 }
 
+- (BOOL)isBackgroundUpdatesEnabled {
+    if (@available(iOS 9.0, *)) {
+        return self.locationManager.allowsBackgroundLocationUpdates;
+    } else {
+        return NO;
+    }
+}
+
+- (void)setBackgroundUpdates:(BOOL)wantsBackgroundUpdates {
+    if (@available(iOS 9.0, *)) {
+        self.locationManager.allowsBackgroundLocationUpdates = wantsBackgroundUpdates;
+    }
+    if (@available(iOS 11.0, *)) {
+        self.locationManager.showsBackgroundLocationIndicator = wantsBackgroundUpdates;
+    }
+}
+
 - (CLLocationManager *) locationManager {
     if (!_locationManager) {
         _locationManager = [[CLLocationManager alloc] init];
