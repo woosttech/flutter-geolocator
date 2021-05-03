@@ -41,8 +41,25 @@
     [locationManager startUpdatingLocation];
 }
 
+- (void)startListeningForSignificantChangesWithResultHandler:(GeolocatorResult _Nonnull)resultHandler
+                                                errorHandler:(GeolocatorError _Nonnull)errorHandler {
+    
+    if (![CLLocationManager significantLocationChangeMonitoringAvailable]) {
+        // The device does not support this service.
+        self.errorHandler(GeolocatorErrorSignificantChangesNotAvailable, @"Significant location changes are not available on this device.");
+        return;
+    }
+    
+    self.errorHandler = errorHandler;
+    self.resultHandler = resultHandler;
+    
+    CLLocationManager *locationManager = self.locationManager;
+    [locationManager startMonitoringSignificantLocationChanges];
+}
+
 - (void)stopListening {
     [self.locationManager stopUpdatingLocation];
+    [self.locationManager stopMonitoringSignificantLocationChanges];
     
     self.errorHandler = nil;
     self.resultHandler = nil;

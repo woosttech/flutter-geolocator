@@ -71,6 +71,18 @@
             return;
         }
         
+        if ([(NSNumber *) arguments[@"accuracy"] isEqualToNumber:@6]) {
+            // Only significant updates
+            [[weakSelf geolocationHandler] startListeningForSignificantChangesWithResultHandler:^(CLLocation * _Nullable location) {
+                [weakSelf onLocationDidChange:location];
+            } errorHandler:^(NSString * _Nonnull errorCode, NSString * _Nonnull errorDescription) {
+                [weakSelf onLocationFailureWithErrorCode:errorCode
+                                        errorDescription:errorDescription];
+            }];
+            
+            return;
+        }
+        
         CLLocationAccuracy accuracy = [LocationAccuracyMapper toCLLocationAccuracy:(NSNumber *)arguments[@"accuracy"]];
         CLLocationDistance distanceFilter = [LocationDistanceMapper toCLLocationDistance:(NSNumber *)arguments[@"distanceFilter"]];
         
